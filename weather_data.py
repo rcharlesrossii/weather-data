@@ -6,38 +6,72 @@ import requests
 url = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 # Charlotte, NC
-params = {
+charlotte_info = {
     "lat": "35.227085",
     "lon": "-80.843124",
     "key": api_key,
-    # "lang": "en",
-    # "units": "I",
+    "lang": "en",
+    "units": "I",
     "include": "minutely",
 }
 
 # Port Washington, WI 
-# params = {
-#     "lat": "43.3872247",
-#     "lon": "-87.875644",
-#     "key": api_key,
-#     # "lang": "en",
-#     # "units": "I",
-#     "include": "minutely",
-# }
+port_washington_info = {
+    "lat": "43.3872247",
+    "lon": "-87.875644",
+    "key": api_key,
+    "lang": "en",
+    "units": "I",
+    "include": "minutely",
+}
 
-response = requests.get(url, params=params)
+# Create a list to store the keys we want from the response
+weather_keys = [
+    "clouds",
+    "datetime",
+    "max_temp",
+    "min_temp",
+    "pop",
+    "precip",
+    "rh",
+    "snow",
+    "temp",
+    "weather" # This is a dictoinary. We only need the value from the description key
+]
 
-# Example request
-# https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=API_KEY&include=minutely
+def get_weather_data(city):
+    """
+    Input a dictionary with the proper values needed using the WeatherbitAPI
+    guidelines to yield a forecast update for city used in the input.
 
-# print(response.url, "\n")
-# print(response.status_code, "\n")
-# print(response.headers, "\n")
-# print(response.encoding, "\n")
-# print(response.text, "\n")
-print(response.json(), "\n")
+    More details: https://www.weatherbit.io/api/weather-forecast-16-day
 
-"""
-Desired keys (within the data key, it is a list with dictionary values for the last 16 days)"
-clouds, clouds_hi, clouds_low, datetime, high_temp, low_temp, max_temp, min_temp, precip, rh snow, snow_depth, weather -> description 
-"""
+    Args:
+        city (dict): A dictionary containing the required information to supply
+        the API with for the desired city in which you want the weather
+        forecast info for.
+
+    Returns:
+        weather_info (dict): Returns the accurate forecast of the city provided
+        as the input.
+    """
+    # Create a dictionary to store the weather info
+    weather_info = {}
+
+    # Get the API response using city as the param
+    response = requests.get(url, params=city)
+    response_data = response.json()["data"][0]
+
+    # Loop through the keys from the response
+    for key in weather_keys:
+        if key in response_data:
+            if key == "weather":
+                weather_info[key] = response_data[key]["description"]
+            else:
+                weather_info[key] = response_data[key]
+    
+    # Return newly populated weather_info
+    return weather_info
+
+charlotte_weather = get_weather_data(charlotte_info)
+port_washington_weather = get_weather_data(port_washington_info)
