@@ -1,0 +1,24 @@
+name: Weather Database Updater
+
+on:
+  schedule:
+    # Minute Hour Day Month Weekday, ALL TIME IS IN UTC WHICH IS +6 HRS AHEAD OF CST
+    - cron: '0 18 * * *'
+   
+env: # Set the secrets as an environment variable
+  api_key: ${{ secrets.API_KEY }}
+  connection_string: ${{ secrets.CONNECTION_STRING }}
+
+jobs:
+  report_match:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with: 
+        python-version: '3.10.2'
+        cache: 'pip'
+    - run: pip install -r requirements.txt
+    - name: script_runner
+      run:
+        python main.py
