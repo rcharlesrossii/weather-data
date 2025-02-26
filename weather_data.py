@@ -1,6 +1,8 @@
-from weatherbit_api_key import api_key
+import os
 import requests
 
+
+API_KEY = os.environ["api_key"]
 
 # Parameters should be supplied to Weather API as query string parameters
 url = "https://api.weatherbit.io/v2.0/forecast/daily"
@@ -9,7 +11,7 @@ url = "https://api.weatherbit.io/v2.0/forecast/daily"
 charlotte_info = {
     "lat": "35.227085",
     "lon": "-80.843124",
-    "key": api_key,
+    "key": API_KEY,
     "lang": "en",
     "units": "I",
     "include": "minutely",
@@ -19,7 +21,7 @@ charlotte_info = {
 port_washington_info = {
     "lat": "43.3872247",
     "lon": "-87.875644",
-    "key": api_key,
+    "key": API_KEY,
     "lang": "en",
     "units": "I",
     "include": "minutely",
@@ -27,16 +29,16 @@ port_washington_info = {
 
 # Create a list to store the keys we want from the response
 weather_keys = [
-    "clouds",
     "datetime",
+    "weather",
+    "clouds",
+    "temp",
     "max_temp",
     "min_temp",
+    "rh",
     "pop",
     "precip",
-    "rh",
     "snow",
-    "temp",
-    "weather" # This is a dictoinary. We only need the value from the description key
 ]
 
 def get_weather_data(city):
@@ -64,7 +66,10 @@ def get_weather_data(city):
 
     # Loop through the keys from the response
     for key in weather_keys:
+        # Check if the key is in the response_data dictoinary
         if key in response_data:
+            # Check if the key is weather, this key is a dictionary
+            # We need the value at the dwescription key
             if key == "weather":
                 weather_info[key] = response_data[key]["description"]
             else:
