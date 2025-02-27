@@ -1,3 +1,4 @@
+certifi==2024.12.14
 pymongo==4.11.1
 requests==2.32.3
 typing==3.7.4.3
