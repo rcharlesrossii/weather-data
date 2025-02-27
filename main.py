@@ -1,19 +1,15 @@
 import os
 
 from pymongo import MongoClient
-import certifi
 
 from weather_data import charlotte_weather, port_washington_weather
 
-
-# Use Mozilla’s collection of Root Certificates to validate the trustworthiness of SSL certificates while verifying the identity of TLS hosts
-ca = certifi.where()
 
 # Use the MongoDB connection string
 CONNECTION_STRING = os.environ["connection_string"]
 
 # Establish a connection to my MongoDB database
-client = MongoClient(CONNECTION_STRING, tlsCAFile=ca)
+client = MongoClient(CONNECTION_STRING)
 
 # Access the existing database
 db = client["weather"]
