@@ -3,7 +3,7 @@ name: Weather Database Updater
 on:
   schedule:
     # Minute Hour Day Month Weekday, ALL TIME IS IN UTC WHICH IS +6 HRS AHEAD OF CST
-    - cron: '30 19 * * *'
+    - cron: '30 22 * * *'
    
 env: # Set the secrets as an environment variable
   api_key: ${{ secrets.API_KEY }}
