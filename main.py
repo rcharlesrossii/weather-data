@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from weather_data import charlotte_weather, port_washington_weather
 
 
+# Use the MongoDB connection string
 CONNECTION_STRING = os.environ["connection_string"]
 
 # Establish a connection to my MongoDB database
