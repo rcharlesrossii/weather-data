@@ -13,7 +13,8 @@ def send_discord_update():
     1.) If the temperature is higher in Port Washington, WI than in
     Charlotte, NC.
     2.) If there is any recorded snowfall in Charlotte, NC.
-    3.) If there is more recorded snowfall in Charlotte, NC than in
+    3.) If there is any recorded snowfall in Port Washington, WI.
+    4.) If there is more recorded snowfall in Charlotte, NC than in
     Port Washington, WI.
 
     Args:
@@ -39,6 +40,9 @@ def send_discord_update():
     # If there is any amount of snow on the ground in Charlotte, NC send a Discord message
     if charlotte_snow != 0:
         webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL, content=f"In Charlotte, NC there is currently {charlotte_snow} inches of snow on the ground. What a rare sight to see in Charlotte, NC!")
+
+    if port_washington_snow != 0:
+        webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL, content=f"In Port Washington, WI there is currently {port_washington_snow} inches of snow on the ground. Having to deal with snow is one of the reasons why we want to move somewhere warmer!")
     
     # If there is more snow on the ground in Charlotte, NC than in Port Washington, WI send a Discord message
     if charlotte_snow > port_washington_snow:
