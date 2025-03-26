@@ -2,6 +2,7 @@ import os
 
 from pymongo import MongoClient
 
+from discord_notifier import send_discord_update
 from weather_data import charlotte_weather, port_washington_weather
 
 
@@ -28,3 +29,6 @@ port_washington.insert_one(port_washington_weather)
 
 # Close the connection
 client.close()
+
+# Notify the MongoDB Weather Database server if there are any important weather updates
+send_discord_update()
