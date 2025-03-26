@@ -1,5 +1,4 @@
 from discord_webhook import DiscordWebhook
-import aiohttp
 import os
 
 from weather_data import charlotte_weather, port_washington_weather
@@ -35,15 +34,39 @@ def send_discord_update():
     
     # If it is warmer in Port Washington, WI than in Charlotte, NC send a Discord message
     if charlotte_temp < port_washington_temp:
-        webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL, content=f"In Charlotte, NC it is currently {charlotte_temp}°F, and in Port Washington, WI it is currently {port_washington_temp}°F. Who would have thought it was warmer in Port Washington, WI than in Charlotte, NC today?")
-    
+        webhook = DiscordWebhook(url=discord_webhook_url, content=f"In Charlotte, NC it is currently {charlotte_temp}°F, and in Port Washington, WI it is currently {port_washington_temp}°F. Who would have thought it was warmer in Port Washington, WI than in Charlotte, NC today?")
+        response = webhook.execute()
+
+        if response.status_code == 200:
+            print("Message sent successfully!")
+        else:
+            print(f"Error sending message: {response.text}")
+
     # If there is any amount of snow on the ground in Charlotte, NC send a Discord message
     if charlotte_snow != 0:
-        webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL, content=f"In Charlotte, NC there is currently {charlotte_snow} inches of snow on the ground. What a rare sight to see in Charlotte, NC!")
+        webhook = DiscordWebhook(url=discord_webhook_url, content=f"In Charlotte, NC there is currently {charlotte_snow} inches of snow on the ground. What a rare sight to see in Charlotte, NC!")
+        response = webhook.execute()
+
+        if response.status_code == 200:
+            print("Message sent successfully!")
+        else:
+            print(f"Error sending message: {response.text}")
 
     if port_washington_snow != 0:
-        webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL, content=f"In Port Washington, WI there is currently {port_washington_snow} inches of snow on the ground. Having to deal with snow is one of the reasons why we want to move somewhere warmer!")
-    
+        webhook = DiscordWebhook(url=discord_webhook_url, content=f"In Port Washington, WI there is currently {port_washington_snow} inches of snow on the ground. Having to deal with snow is one of the reasons why we want to move somewhere warmer!")
+        response = webhook.execute()
+
+        if response.status_code == 200:
+            print("Message sent successfully!")
+        else:
+            print(f"Error sending message: {response.text}")
+
     # If there is more snow on the ground in Charlotte, NC than in Port Washington, WI send a Discord message
     if charlotte_snow > port_washington_snow:
-        webhook = DiscordWebhook(url=DISCORD_WEBHOOK_URL, content=f"In Charlotte, NC there is currently {charlotte_snow} inches of snow on the ground and in Port Washington, WI there is currently {port_washington_snow} inches of snow on the ground. How could there possibly more snow in Charlotte, NC than in Port Washignton, WI?")
+        webhook = DiscordWebhook(url=discord_webhook_url, content=f"In Charlotte, NC there is currently {charlotte_snow} inches of snow on the ground and in Port Washington, WI there is currently {port_washington_snow} inches of snow on the ground. How could there possibly more snow in Charlotte, NC than in Port Washignton, WI?")
+        response = webhook.execute()
+
+        if response.status_code == 200:
+            print("Message sent successfully!")
+        else:
+            print(f"Error sending message: {response.text}")
