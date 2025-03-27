@@ -30,5 +30,8 @@ port_washington.insert_one(port_washington_weather)
 # Close the connection
 client.close()
 
+# Use the Discord Webhook URL from the MongoDB Weather Database server
+DISCORD_WEBHOOK_URL = os.environ["discord_webhook_url"]
+
 # Notify the MongoDB Weather Database server if there are any important weather updates
-send_discord_update()
+send_discord_update(url=DISCORD_WEBHOOK_URL)
