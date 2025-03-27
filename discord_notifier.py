@@ -5,7 +5,10 @@ import os
 from weather_data import charlotte_weather, port_washington_weather
 
 
-def send_discord_update() -> None:
+# Use the Discord Webhook URL from the MongoDB Weather Database server
+DISCORD_WEBHOOK_URL = os.environ["discord_webhook_url"]
+
+def send_discord_update(url=DISCORD_WEBHOOK_URL) -> None:
     """
     This function will utilize a Discord webhook to send a message to my
     MongoDB Weather Database Discord server. Three different
@@ -18,14 +21,11 @@ def send_discord_update() -> None:
     Port Washington, WI.
 
     Args:
-        None
+        url (string): This is my Discord Webhook URL for the MongoDB Weather Database server.
 
     Returns:
-        None
+        None.
     """
-    # Use the MongoDB connection string
-    DISCORD_WEBHOOK_URL = os.environ["discord_webhook_url"]
-    
     # Obtain the weather data for both Charlotte, NC & Port Washington, WI
     charlotte_temp = charlotte_weather["temp"]
     charlotte_snow = charlotte_weather["snow"]
