@@ -3,11 +3,12 @@ name: Weather Database Updater
 on:
   schedule:
     # Minute Hour Day Month Weekday, ALL TIME IS IN UTC WHICH IS +6 HRS AHEAD OF CST
-    - cron: '10 20 * * *'
+    - cron: '00 19 * * *'
    
 env: # Set the secrets as an environment variable
   api_key: ${{ secrets.API_KEY }}
   connection_string: ${{ secrets.CONNECTION_STRING }}
+  discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
 jobs:
   update_weather:
