@@ -1,6 +1,6 @@
 My wife and I currently live in Port Washington, WI, and plan on moving to Charlotte, NC, sometime in late 2025.
-As a way of looking forward to this big move, I have been collecting weather data from both of these places.
-First, I needed to find a free weather API that had a considerable rate limit.
+I have been collecting weather data from both of these places as a way to continue the excitement about the move and monitor the better weather in Charlotte.
+First, I needed to find a free weather API that had a considerable rate limit as a feasible way of running my script daily.
 After looking around at different weather APIs, I settled on Weatherbit (www.weatherbit.io).
 I needed to create an account, which allowed me to have an API key to make requests to.
 After playing around with the API endpoints, I was able to get the desired information and implement my code and run it on a daily basis at 12 PM CST using GitHub Actions.
