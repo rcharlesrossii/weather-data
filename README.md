@@ -1,4 +1,4 @@
-My wife and I currently live in Port Washington, WI, and plan on moving to Charlotte, NC, sometime in late 2025.
+My wife and I currently live in Port Washington, WI, and plan on moving to Charlotte, NC, in late 2025.
 I have been collecting weather data from both of these places as a way to continue the excitement about the move and monitor the better weather in Charlotte.
 First, I needed to find a free weather API that had a considerable rate limit as a feasible way of running my script daily.
 After looking around at different weather APIs, I settled on Weatherbit (www.weatherbit.io).
