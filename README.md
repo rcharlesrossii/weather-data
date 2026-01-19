@@ -1,12 +1,12 @@
 # Weather Comparison Tracker
 
-A personal project that compares daily weather between **Port Washington, WI** (where I moved from) and **Charlotte, NC** (where I moved to). I built this to track how the climates differ over time and to get excited about the move by seeing the warmer weather in action.
+I created this repository as a personal project that compares daily weather between **Port Washington, WI** (where I moved from) and **Charlotte, NC** (where I moved to). As a way to get excited about my move, I built this to track how the climates differ over time and to visualize the warmer weather, higher humidity, less snow, and overall better weather down in Charlotte versus my hometown of Port Washington.
 
 ---
 
 ## Project Overview
 
-This project automatically collects weather data each day, stores it in a database, and creates visual comparisons between the two cities. It also sends fun Discord notifications when unusual or interesting weather events occur.
+This project collects weather data using Weatherbit.io's API endpoints, sending that data to a cluster on MongoDB, and using MongoDB's charts to create visualizations that compare the weather between these two cities. It also sends fun Discord notifications when unusual or interesting weather events occur.
 
 ## Temperature Comparison Snapshots
 
@@ -38,11 +38,11 @@ The interactive MongoDB Charts dashboard for this project can be viewed here:
 ## Technologies Used
 
 - Python  
-- Weather API  
+- Weatherbit.io's API  [https://www.weatherbit.io/](https://www.weatherbit.io/api/weather-current)
 - MongoDB  
-- Data visualization tools  
+- A simple dashboard using charts on MongoDB  
 - Discord webhooks  
-- Scheduled automation  
+- Scheduled automation via GitHub Actions 
 
 ---
 
@@ -58,13 +58,4 @@ This project helped me practice:
 
 ---
 
-## Future Ideas
-
-- Add more cities for comparison  
-- Build a small web dashboard  
-- Track long-term trends and averages  
-- Package the project for easier reuse  
-
----
-
-This is a small and simple project, but it was a fun way to combine programming and data into my real-life move to a new city!
+This is a small and simple project, but it was a fun way to combine programming and data collection into my real-life move to a new city! Instead of interpreting the better weather down in Charlotte, my wife and I now experience how much better this is for us in comparison to Port Washington.
