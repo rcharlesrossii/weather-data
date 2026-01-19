@@ -5,7 +5,7 @@ on:
     # Minute Hour Day Month Weekday, ALL TIME IS IN UTC 
     # No Daylight Saving Time: +6 hrs ahead CST
     # Daylight Saving Time: +5 hrs ahead of CST
-    - cron: '00 17 * * *'
+    - cron: '00 18 * * *'
    
 env: # Set the secrets as an environment variable
   api_key: ${{ secrets.API_KEY }}
