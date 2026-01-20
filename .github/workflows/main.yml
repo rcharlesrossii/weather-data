@@ -3,8 +3,8 @@ name: Weather Database Updater
 on:
   schedule:
     # Minute Hour Day Month Weekday, ALL TIME IS IN UTC 
-    # No Daylight Saving Time: +6 hrs ahead CST
-    # Daylight Saving Time: +5 hrs ahead of CST
+    # No Daylight Saving Time: +5 hrs ahead EST
+    # Daylight Saving Time: +4 hrs ahead of EST
     - cron: '00 18 * * *'
    
 env: # Set the secrets as an environment variable
