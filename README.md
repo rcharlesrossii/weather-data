@@ -58,4 +58,12 @@ This project helped me practice:
 
 ---
 
+## What I Would Change
+
+After collecting my data, creating charts on MongoDB, and understanding the limitations of MongoDB charts, I would change the following about this:
+
+- I would have liked to have hosted my data elsewhere, because I could not create visuals that allowed me to compare data from two different databases
+- Or, I would have put the data into one database, instead of having two separate bases, because I could not share the data in one graph
+- I would have made sure that my GitHub Actions cron schedule was still running every day, because it stopped after inactivity for this repo
+
 This is a small and simple project, but it was a fun way to combine programming and data collection into my real-life move to a new city! Instead of interpreting the better weather down in Charlotte, my wife and I now experience how much better this is for us in comparison to Port Washington.
