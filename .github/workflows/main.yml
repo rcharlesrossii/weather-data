@@ -1,8 +1,15 @@
+# Weather Database Updater
+# - schedule: runs daily at 18:00 UTC
+# - workflow_dispatch: lets you manually trigger this workflow from the Actions UI or via the API
+# - concurrency: prevents unwanted cancellations (queued instead of cancelling by default)
+# - timeout-minutes: prevents runaway jobs
+# - debug step: prints basic run metadata to help diagnose future issues
 name: Weather Database Updater
 
 on:
   schedule:
     - cron: '00 18 * * *'
+  workflow_dispatch:
 
 concurrency:
   group: weather-database-updater
@@ -16,12 +23,30 @@ env:
 jobs:
   update_weather:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Debug info
+        run: |
+          echo "Run ID: $GITHUB_RUN_ID"
+          echo "Run number: $GITHUB_RUN_NUMBER"
+          echo "SHA: $GITHUB_SHA"
+          echo "Ref: $GITHUB_REF"
+          echo "Actor: $GITHUB_ACTOR"
+          echo "Runner: $RUNNER_NAME"
+          uname -a
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'pip'
-      - run: pip install -r requirements.txt
-      - name: script_runner
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weather updater
         run: python main.py
