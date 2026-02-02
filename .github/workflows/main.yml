@@ -2,12 +2,13 @@ name: Weather Database Updater
 
 on:
   schedule:
-    # Minute Hour Day Month Weekday, ALL TIME IS IN UTC 
-    # No Daylight Saving Time: +5 hrs ahead EST
-    # Daylight Saving Time: +4 hrs ahead of EST
     - cron: '00 18 * * *'
-   
-env: # Set the secrets as an environment variable
+
+concurrency:
+  group: weather-database-updater
+  cancel-in-progress: false
+
+env:
   api_key: ${{ secrets.API_KEY }}
   connection_string: ${{ secrets.CONNECTION_STRING }}
   discord_webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -16,12 +17,11 @@ jobs:
   update_weather:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with: 
-        python-version: '3.10'
-        cache: 'pip'
-    - run: pip install -r requirements.txt
-    - name: script_runner
-      run:
-        python main.py
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - name: script_runner
+        run: python main.py
